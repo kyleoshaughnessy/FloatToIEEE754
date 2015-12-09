@@ -1,32 +1,35 @@
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
 typedef union {
     size_t st;
     float f;
-} ieee754Union;
+} IEEE754Union;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 
-	if (argc < 2) {
-		cerr << "Please supply a float as the first argument." << endl;
-        return EXIT_FAILURE;
-	}
+    IEEE754Union u;
 
-    ieee754Union u;
-
-    if(sscanf(argv[1], "%f", &u.f) == 0) {
+    if (argc < 2 || 0 == sscanf(argv[1], "%f", &u.f)) {
         cerr << "Please supply a float as the first argument." << endl;
         return EXIT_FAILURE;
     }
 
-    string bitString = bitset<32>(u.st).to_string().insert(9, ":").insert(1, ":");
+    int width = 40;
+    width = (strlen(argv[1]) > width) ? (int) strlen(argv[1]) + 1 : width;
 
-    cout << argv[1] << " (base 10 argument)" << endl;
-    cout << u.f << " (base 10 internal float)" << endl;
-    cout << hex << (((1 << 31) - 1) & u.st) << " (ieee754 hexadecimal)" << endl;
-    cout << bitString << " (ieee754 sign:exponent:mantissa)" << endl;
+    string bitString = bitset<32>(u.st).to_string();
+    bitString.insert(9, ":");
+    bitString.insert(1, ":");
+
+    cout << setfill('.');
+    cout << left << setw(width) << argv[1]                    << "(base 10 argument)" << endl;
+    cout << left << setw(width) << u.f                        << "(base 10 internal float)" << endl;
+    cout << left << setw(width) << hex << (u.st & 0xFFFFFFFF) << "(ieee754 hexadecimal)" << endl;
+    cout << left << setw(width) << bitString                  << "(ieee754 sign:exponent:mantissa)" << endl;
 
     return EXIT_SUCCESS;
 }
