@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     cout << argv[1] << " (base 10 argument)" << endl;
     cout << u.f << " (base 10 internal float)" << endl;
     cout << hex << (((1 << 31) - 1) & u.st) << " (ieee754 hexadecimal)" << endl;
-    cout << bitString << " (ieee754 sign:exponent:mantisa)" << endl;
+    cout << bitString << " (ieee754 sign:exponent:mantissa)" << endl;
 
     return EXIT_SUCCESS;
 }
