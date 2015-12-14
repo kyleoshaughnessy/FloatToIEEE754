@@ -1,3 +1,9 @@
 # FloatToIEEE754
-Convert a floating point argument to both the hexadecimal and binary representations of the ieee754 single-precision format.
-Confirmed working on a 64-bit machine, have yet to test in a 32-bit environment.
+Hexadecimal and binary ieee754 single-precision formating of the given floating point argument.
+## Usage
+`$ make`
+`$ ./ieee754 3.14159`
+`3.14159.................................(base 10 argument)`  
+`3.14159.................................(base 10 internal float)`  
+`40490fd0................................(ieee754 hexadecimal)`  
+`0:10000000:10010010000111111010000......(ieee754 sign:exponent:mantissa)`  
