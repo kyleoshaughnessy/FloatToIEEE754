@@ -1,5 +1,5 @@
 # FloatToIEEE754
-Hexadecimal and binary ieee754 single-precision formating.
+IEEE754 single-precision formatting.
 ## Usage
     $ make
     $ ./ieee754 3.14159
